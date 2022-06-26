@@ -56,6 +56,7 @@ public class GenerateElements : MonoBehaviour
         _grid.cellSize = new Vector2(_rect.rect.width, _rect.rect.height);
         
         ElementsCleaning(_listElements);
+        
         if(_listCloneElements.Count > 0)
             ElementsCleaning(_listCloneElements);
         

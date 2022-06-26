@@ -11,11 +11,8 @@ public class MovementOfElements
 
     public void MoveElements()
     {
-        for (int i = 0; i < _listCloneElements.Count; i++)
-        {
-            _listCloneElements[i].ChangeStateOfFree(true);
-            _listCloneElements[i].ChangeStateOfMove(true);
-        }
+        InitialState();
+        
         for (int i = 0; i < _listCloneElements.Count; i++)
         {
             int myIndex = FindMoveIndex();
@@ -54,7 +51,6 @@ public class MovementOfElements
 
     private int FindMoveIndex()
     {
-        
         int range = Random.Range(0,_listCloneElements.Count);
 
         if (_listCloneElements[range].IsMove)
@@ -69,5 +65,14 @@ public class MovementOfElements
         
         _listCloneElements[range].ChangeStateOfMove(false);
         return range;
+    }
+
+    private void InitialState()
+    {
+        for (int i = 0; i < _listCloneElements.Count; i++)
+        {
+            _listCloneElements[i].ChangeStateOfFree(true);
+            _listCloneElements[i].ChangeStateOfMove(true);
+        }
     }
 }

@@ -12,18 +12,13 @@ namespace DefaultNamespace
         private bool _isMove = true;
         private bool _isFree = true;
         private float _timeMotion;
+        
         private Element _target;
         private Vector3 _targetPosition;
         public bool IsMove => _isMove;
         public bool IsFree => _isFree;
-        
-        private Vector3 _direction;
-
-        public void Initialize(float timeMotion)
-        {
+        public void Initialize(float timeMotion) => 
             _timeMotion = timeMotion;
-        }
-
         public void ChangeText() => 
             _textMeshPro.GetRandomWord();
         public void ChangeStateOfMove(bool isMove) => 
