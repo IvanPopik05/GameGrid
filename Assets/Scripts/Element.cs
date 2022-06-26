@@ -11,14 +11,19 @@ namespace DefaultNamespace
         
         private bool _isMove = true;
         private bool _isFree = true;
-        private float _timeMotion;
         
         private Element _target;
         private Vector3 _targetPosition;
+        private Vector3 _startPosition;
+        private Vector3 _direction;
+        private float _step;
+        private float _progress = 0;
         public bool IsMove => _isMove;
         public bool IsFree => _isFree;
+
         public void Initialize(float timeMotion) => 
-            _timeMotion = timeMotion;
+            _step = timeMotion / (timeMotion * 100);
+
         public void ChangeText() => 
             _textMeshPro.GetRandomWord();
         public void ChangeStateOfMove(bool isMove) => 
@@ -31,14 +36,16 @@ namespace DefaultNamespace
         {
             _target = target;
             _targetPosition = target.transform.position;
+            _startPosition = transform.position;
+            _progress = 0;
         }
-        private void Update()
+        private void FixedUpdate()
         {
             if(!_target)
                 return;
             
-            transform.position = Vector3.Lerp(transform.position,_targetPosition,Time.deltaTime * _timeMotion);
-
+            transform.position = Vector3.Lerp(_startPosition,_targetPosition,_progress);
+            _progress += _step;
         }
     }
 }
